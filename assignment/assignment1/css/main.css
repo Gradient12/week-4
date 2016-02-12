@@ -1,6 +1,60 @@
 /* =================
 Add more styles here!
 ================= */
+.school{
+  background-color: #EEEEEE;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.inlineBlock{
+  display: inline-block;
+}
+
+#rightButton{
+  float:right;
+  margin-top: 25px;
+}
+
+h1{
+  font-size: 26px;
+  margin-bottom: auto;
+}
+
+
+.subTitle{
+  font-family:Helvetica, arial, sans-serif;
+  font-size:20px;
+}
+
+.schoolName{
+  font-family:Helvetica, arial, sans-serif;
+  font-size:18px;
+  margin: auto;
+}
+
+.schoolLevel{
+  font-family:Helvetica, arial, sans-serif;
+  font-size:18px;
+  color:#AAAAAA;
+  margin: auto;
+}
+
+.address{
+  font-family:Helvetica, arial, sans-serif;
+  font-size:14px;
+  margin: auto;
+}
+
+.postalCode{
+  font-family:Helvetica, arial, sans-serif;
+  font-size:14px;
+  margin: auto;
+}
 
 body {
     padding: 0;

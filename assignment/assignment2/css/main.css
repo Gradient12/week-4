@@ -7,3 +7,86 @@ body {
 /* =================
 Add more styles here!
 ================= */
+
+.title1{
+  font-size: 70px;
+  color:#555555;
+  margin: 15px;
+}
+
+.title2{
+  font-family: helvetica;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color:#555555;
+  margin: 2px;
+}
+
+.title3{
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color:#666666;
+  margin: 10px;
+}
+
+.body1{
+  font-family: helvetica;
+  font-size: 12px;
+  color:#777777;
+  margin: 2px;
+  text-align: left;
+  line-height: 20px;
+}
+
+.colorButton{
+  background-color: #1FBBA0;
+  width: 300px;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: auto;
+  border-style: none;
+  border-radius: 5px;
+  padding: 12px;
+}
+.colorButton:hover{
+  background-color: #37E2C1;
+}
+
+.grayButton{
+  background-color: #666666;
+  width: 300px;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: auto;
+  border-style: none;
+  border-radius: 5px;
+  padding: 12px;
+}
+.grayButton.hover{
+  background-color: #939393;
+}
+
+.columnImage{
+  width: 85%;
+  height: auto;
+  margin: 30px;
+}
+
+#top{
+  margin: 0px;
+  background-color: #F6F7F8;
+  text-align:center;
+  padding:70px;
+}
+
+#bottom{
+  margin: 0px;
+  background-color: #EDEFEF;
+  text-align:center;
+  padding:70px;
+  height: 1000px;
+  max-height: none;
+}

@@ -30,11 +30,47 @@
        var one = justOne();
 ===================== */
 
-var downloadData = $.ajax("");
-var parseData = function() {};
-var makeMarkers = function() {};
-var plotMarkers = function() {};
 
+var parseData = function(data) {
+  var parsed = JSON.parse(data);
+  //console.log(Object.keys(parsed[0]));
+  return parsed;
+};
+
+var makeMarkers = function(parsedArray) {
+  var mapped = _.map(parsedArray,function(crime){
+    //console.log(typeof crime.Coordinates);
+    if(typeof crime.Coordinates == 'string'){  // the data is not clean
+      var coordString = crime.Coordinates.replace(/[()]/g, '');
+      var split = coordString.split(',');
+      var coord = _.map(split,function(s){
+        return parseFloat(s);
+      });
+      var coordArray = [coord[0],coord[1]];
+      var popup = "DC Number: "+ crime['DC Number'] +
+            '  Dispatch Date/Time: '+crime['Dispatch Date/Time']+
+            '  General Crime Category: '+crime['General Crime Category'];
+      return L.marker(coord).bindPopup(popup);
+    }
+    else{
+      return null;
+    }
+  });
+
+  // remove null item
+  var filtered = _.filter(mapped,function(x){
+    return x!==null;
+  });
+  return filtered;
+};
+
+var plotMarkers = function(markerArray) {
+  _.each(markerArray,function(m){
+    m.addTo(map);
+  });
+};
+
+var downloadData = $.ajax("https://raw.githubusercontent.com/CPLN690-MUSA610/datasets/master/json/philadelphia-crime-snippet.json");
 
 /* =====================
   Define the function removeData so that it clears the markers you've written
@@ -49,7 +85,11 @@ var plotMarkers = function() {};
   user's input.
 ===================== */
 
-var removeMarkers = function() {};
+var removeMarkers = function(markers) {
+  _.each(markers,function(m){
+    map.removeLayer(m);
+  });
+};
 
 /* =====================
   Optional, stretch goal
@@ -64,7 +104,9 @@ var removeMarkers = function() {};
 
 downloadData.done(function(data) {
   var parsed = parseData(data);
+  console.log('#parsed = '+parsed.length);
   var markers = makeMarkers(parsed);
+  console.log('#clean = '+markers.length);
   plotMarkers(markers);
   removeMarkers(markers);
 });

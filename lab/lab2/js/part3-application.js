@@ -27,9 +27,10 @@
   Define a resetMap function to remove markers from the map and clear the array of markers
 ===================== */
 var resetMap = function() {
-  /* =====================
-    Fill out this function definition
-  ===================== */
+  _.each(myMarkers,function(m){
+    map.removeLayer(m);
+  });
+  myMarkers = [];
 };
 
 /* =====================
@@ -38,9 +39,12 @@ var resetMap = function() {
   it down!
 ===================== */
 var getAndParseData = function() {
-  /* =====================
-    Fill out this function definition
-  ===================== */
+  var phillySolarInstallationDataUrl = "https://raw.githubusercontent.com/CPLN690-MUSA610/datasets/master/json/philadelphia-solar-installations.json";
+
+  $.ajax(phillySolarInstallationDataUrl).done(function(ajaxResponseValue){
+    myData = JSON.parse(ajaxResponseValue);
+    //console.log(myData);
+  });
 };
 
 /* =====================
@@ -48,7 +52,20 @@ var getAndParseData = function() {
   criteria happens to be — that's entirely up to you)
 ===================== */
 var plotData = function() {
-  /* =====================
-    Fill out this function definition
-  ===================== */
+  var minPower = numericField1;
+  var maxPower = numericField2;
+  var filtered=_.filter(myData,function(solar){
+    return solar.KW>=minPower && solar.KW<=maxPower;
+  });
+  myMarkers = _.map(filtered,function(solar){
+    var popup = "DEVELOPER: "+solar.DEVELOPER+"  Power(KW): "+solar.KW;
+    return L.marker([solar.Y,solar.X]).bindPopup(popup);
+  });
+  _.each(myMarkers,function(m){
+    m.addTo(map);
+  });
 };
+
+//resetMap();
+//getAndParseData();
+//plotData();
